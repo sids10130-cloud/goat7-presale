@@ -64,3 +64,33 @@ Features: Hero, Tokenomics, Roadmap, FAQ, Telegram + X links, Phantom wallet con
 - NFT preview section for Phase 4 roadmap
 - Holder leaderboard
 - Multi-language support (EN/CN/ES)
+
+---
+
+## Iteration 2 — Premium Redesign (Dec 2025)
+
+**Brief**: Redesign as a premium Solana meme coin site with black background + gold/neon-green accents. Add mascot, new headline, treasury wallet, security & community sections, real social links.
+
+### What changed
+- Hero — Two-column layout: bold "GOAT7 / The King of / Solana Memes." headline + animated mascot orb (with rotating dashed rings, floating chips: 10B Supply, 0% Tax, LP Burned). Three CTAs: Connect Wallet (Phantom), Buy GOAT7 (→ cr7goat.xyz), Join Telegram. Added Treasury Wallet box (with copy) below CA box.
+- Tokenomics — New 6-card allocation grid + big "10B" supply card with gradient text.
+- Roadmap copy updated (Genesis & Presale → DEX Launch → Tier-1 Listings → Ecosystem).
+- **NEW Security section** (`/components/Security.jsx`) — 6 pillar cards (LP Burned, Mint Revoked, Contract Renounced, Multi-Sig Treasury, Audited Codebase, Doxxed Community) + audit CTA strip with Solscan / Solana Explorer links.
+- **NEW Community section** (`/components/Community.jsx`) — 3 channel cards (Telegram Group @CR7GOATarmy, Telegram Channel @CR7GOATAnnouncements, Website cr7goat.xyz) + big "community is the alpha" CTA banner.
+- FAQ — 7 items now (added Treasury wallet question).
+- Header — Added Buy GOAT7 button; nav switched lg→xl breakpoint to fit 6 links.
+- Footer — Replaced placeholder URLs with real socials; added Telegram channel & website icons; Treasury Solscan deep link.
+
+### Real socials wired in
+- Telegram Group: https://t.me/CR7GOATarmy
+- Telegram Channel: https://t.me/CR7GOATAnnouncements
+- Website: https://cr7goat.xyz
+- X: placeholder (https://x.com/CR7GOATarmy — confirm with user)
+
+### Constants
+- Treasury wallet: GqQCMmPf1sKRWaix85B79DNpgHGc8SrMNGec44q8mwg5
+- Total supply: 10,000,000,000 GOAT7
+- Tokenomics: Presale 40 / Liquidity 25 / Marketing 15 / Team 10 / Community 7 / CEX 3
+
+### Testing
+- testing_agent_v3 iteration_2: 100% pass on 15 acceptance criteria (desktop 1920x1080 + mobile 390x844).
