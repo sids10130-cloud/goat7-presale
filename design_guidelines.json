@@ -1,0 +1,122 @@
+{
+  "theme_and_archetype": {
+    "domain": "Web3 / Meme Coin",
+    "archetype": "5 (Luxury) mixed with Web3 High-Contrast",
+    "theme": "dark",
+    "emotional_tone": "Premium, Exclusive, Wealth, Bold"
+  },
+  "typography": {
+    "fonts": {
+      "headings": "Unbounded",
+      "body": "IBM Plex Sans",
+      "monospace": "JetBrains Mono"
+    },
+    "rules": {
+      "h1": "text-5xl md:text-6xl tracking-tighter font-black",
+      "h2": "text-3xl md:text-4xl tracking-tight font-bold",
+      "body": "text-base leading-relaxed text-neutral-300",
+      "overline": "uppercase tracking-[0.2em] text-xs font-bold text-[#FFD700]"
+    }
+  },
+  "color_palette": {
+    "background": {
+      "primary": "bg-[#050505]",
+      "secondary": "bg-[#0A0A0A]"
+    },
+    "surface": {
+      "glass": "backdrop-blur-2xl bg-[#050505]/70 border border-white/10",
+      "card": "bg-[#111111] border border-white/5",
+      "hover": "hover:bg-[#1a1a1a] hover:border-[#FFD700]/50 transition-all duration-300"
+    },
+    "text": {
+      "primary": "text-white",
+      "secondary": "text-neutral-400",
+      "accent_gold": "text-[#FFD700]",
+      "accent_green": "text-[#10B981]"
+    },
+    "buttons": {
+      "primary": "bg-[#FFD700] text-black font-bold hover:bg-[#FBE14D] shadow-[0_0_15px_rgba(255,215,0,0.3)]",
+      "secondary": "bg-transparent border-2 border-[#10B981] text-[#10B981] hover:bg-[#10B981]/10 font-bold"
+    }
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "p-4 md:p-8 lg:p-12",
+    "section_gap": "py-24 md:py-32",
+    "grid_modes": {
+      "tokenomics": "grid grid-cols-1 md:grid-cols-4 gap-6 (Bento Grid: 1 large span for total supply, 3 small spans for allocations)",
+      "roadmap": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+    }
+  },
+  "components_and_features": {
+    "header": {
+      "type": "Sticky Glassmorphism Header",
+      "features": ["Logo (GOAT7)", "Navigation Links", "Social Icons (X, Telegram)", "Phantom Wallet Connect Button (shows SOL balance post-connect)"]
+    },
+    "hero": {
+      "layout": "Immersive full-height, bold center or asymmetrical alignment",
+      "features": [
+        "H1 Title: GOAT7",
+        "Gradient Text: bg-gradient-to-r from-[#FFD700] to-[#10B981] text-transparent bg-clip-text",
+        "Contract Address Box: 'TBA' with Copy Button",
+        "Disclaimer Marquee/Text: 'Not affiliated with any celebrity, athlete, sports organization, or third-party brand'"
+      ]
+    },
+    "tokenomics": {
+      "style": "Bento Grid Cards (1px border, crisp edges)",
+      "data": ["Total Supply", "Liquidity", "Community", "Marketing", "Team Locked"]
+    },
+    "roadmap": {
+      "style": "Grid Borders (Technical/Exposed skeleton look)",
+      "phases": ["Phase 1: Launch", "Phase 2: Community", "Phase 3: Listings", "Phase 4: Ecosystem"]
+    },
+    "whitepaper": {
+      "style": "High-contrast block with abstract green/gold textures",
+      "features": ["Summary Text", "Download Whitepaper CTA Button"]
+    },
+    "faq": {
+      "style": "Customized Shadcn Accordion (dark theme, gold active states)"
+    }
+  },
+  "motion_and_interactions": {
+    "scroll_reveal": "Framer Motion: initial opacity 0, y 20 -> whileInView opacity 1, y 0",
+    "hover_states": "Cards lift (-translate-y-1) + border color shifts to gold/green",
+    "interactions": "Smooth scroll via lenis (optional) or native CSS scroll-behavior: smooth"
+  },
+  "media": {
+    "images": [
+      {
+        "category": "hero_background_abstract",
+        "url": "https://images.pexels.com/photos/5200063/pexels-photo-5200063.jpeg",
+        "description": "Abstract emerald green waves, use as a low-opacity background blend"
+      },
+      {
+        "category": "hero_visual",
+        "url": "https://images.pexels.com/photos/33449890/pexels-photo-33449890.jpeg",
+        "description": "Dark moody ram/goat profile, use as floating visual or hero graphic"
+      },
+      {
+        "category": "texture_accent",
+        "url": "https://images.pexels.com/photos/12197169/pexels-photo-12197169.jpeg",
+        "description": "Gold and black texture, use for card backgrounds or border masks"
+      }
+    ],
+    "icons": "lucide-react (e.g., Copy, Download, Wallet, Twitter, Send)"
+  },
+  "testing_requirements": {
+    "attributes": [
+      "data-testid='phantom-connect-button'",
+      "data-testid='copy-ca-button'",
+      "data-testid='download-whitepaper-button'",
+      "data-testid='faq-accordion-item'"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Build a pure static frontend using React + Tailwind + Shadcn.",
+    "Do NOT use 'Inter' for headings. Install and use 'Unbounded' via Google Fonts (or similar wide/bold font like Cabinet Grotesk).",
+    "Ensure the Phantom wallet connect function uses the window.solana API and strictly displays the user's SOL balance after connecting.",
+    "Place the disclaimer clearly in the Hero section or Footer.",
+    "For the CA, it should literally display 'TBA' and clicking the copy button should copy 'TBA' to the clipboard with a toast notification.",
+    "Do not use purple/violet colors anywhere. Stick strictly to the Gold (#FFD700) and Emerald (#10B981) palette.",
+    "Ensure all interactive components have the specified data-testid attributes for testing."
+  ]
+}
