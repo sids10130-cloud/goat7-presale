@@ -6,7 +6,7 @@ import { SOCIALS } from "@/lib/goat-data";
 const HIGHLIGHTS = [
   { icon: Lock, title: "Liquidity Burned", body: "100% of initial LP burned at launch — verifiable on-chain." },
   { icon: ShieldCheck, title: "Mint Renounced", body: "No mint authority. No upgrade authority. Pure community ownership." },
-  { icon: Flame, title: "Deflationary Events", body: "Quarterly buyback-and-burn from treasury allocation." },
+  { icon: Flame, title: "Deflationary Events", body: "Periodic buyback-and-burn events to reduce circulating supply over time." },
 ];
 
 export default function Whitepaper() {

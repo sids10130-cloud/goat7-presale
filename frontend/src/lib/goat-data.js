@@ -41,7 +41,7 @@ export const ROADMAP = [
     phase: "Phase 01",
     title: "Genesis & Presale",
     items: [
-      "Treasury wallet & multi-sig setup",
+      "Smart contract deployment",
       "Public presale launch",
       "Whitepaper v1.0 release",
       "Community Telegram & X go live",

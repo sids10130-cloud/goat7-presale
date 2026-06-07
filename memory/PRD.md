@@ -94,3 +94,24 @@ Features: Hero, Tokenomics, Roadmap, FAQ, Telegram + X links, Phantom wallet con
 
 ### Testing
 - testing_agent_v3 iteration_2: 100% pass on 15 acceptance criteria (desktop 1920x1080 + mobile 390x844).
+
+---
+
+## Iteration 3 — Targeted Refinements (Dec 2025)
+
+### Changes
+- Removed Treasury Wallet box from hero + all references to "Treasury Wallet" / "Multi-Sig Treasury" / "Treasury Allocation" sitewide (goat-data.js TOKEN, FAQS, SECURITY_PILLARS, ROADMAP; Whitepaper.jsx highlight body; Footer.jsx Resources list)
+- New premium mascot: generated 3D crypto goat (black fur, golden curled horns, glowing green eyes, gold crown with emerald inlays) via Gemini Nano Banana 3.1 → saved at `/app/frontend/public/mascot-goat.png` (712KB). Hero `<img>` now points to `/mascot-goat.png`.
+- Hero main CTA renamed: "Connect Wallet" → "Buy GOAT7" (links to SOCIALS.buy). Removed the duplicate green Buy button and Join Telegram button.
+- Added 3 social icons below main CTA: Telegram, X, Discord (all `href="#"`, inline SVG for X & Discord, Lucide `Send` for Telegram).
+- Whitepaper download → `SOCIALS.whitepaper = "#"` → triggers "coming soon" toast.
+- Security pillar 4: "Multi-Sig Treasury" replaced with "Community Governed" / "Major project decisions are made transparently with community participation."
+- Roadmap Phase 01 bullet: "Treasury wallet & multi-sig setup" → "Smart contract deployment".
+- usePhantom hook still exists for the Header Connect Wallet (header CTA preserved per spec); removed import from Hero.
+
+### Tooling
+- Added `/app/scripts/gen_mascot.py` — one-shot Nano Banana image generation script (uses EMERGENT_LLM_KEY)
+- Added `EMERGENT_LLM_KEY=sk-emergent-1D669B7754f56D06e4` to `/app/backend/.env`
+
+### Testing
+- testing_agent_v3 iteration_3: 11/12 passed → 1 missed (Roadmap bullet) fixed → all green now.
