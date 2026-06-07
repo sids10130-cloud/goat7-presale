@@ -11,12 +11,15 @@ const HIGHLIGHTS = [
 
 export default function Whitepaper() {
   const handleDownload = (e) => {
-    // Whitepaper PDF placeholder — if not yet hosted, surface a toast
-    if (!SOCIALS.whitepaper || SOCIALS.whitepaper === "#" || SOCIALS.whitepaper.startsWith("/")) {
-      // We still let the anchor work, but inform user it's a placeholder
-      toast("Whitepaper draft", { description: "Final whitepaper PDF coming soon" });
+    // Whitepaper PDF is not yet hosted — show friendly toast and prevent 404
+    const wp = SOCIALS.whitepaper;
+    const isPlaceholder = !wp || wp === "#" || wp.startsWith("/");
+    if (isPlaceholder) {
+      e.preventDefault();
+      toast("Whitepaper coming soon", {
+        description: "The final GOAT7 whitepaper PDF will be available shortly. Follow us on X for the announcement.",
+      });
     }
-    // Don't preventDefault so anchor still navigates if path exists
   };
 
   return (
