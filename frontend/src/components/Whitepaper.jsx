@@ -48,7 +48,7 @@ export default function Whitepaper() {
             className="lg:col-span-7"
           >
             <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-[#FFD700]">
-              04 · Whitepaper
+              05 · Whitepaper
             </span>
             <h2 className="font-display font-black text-4xl md:text-6xl mt-3 tracking-[-0.03em]">
               The complete <span className="goat-gradient-text">GOAT7 thesis.</span>

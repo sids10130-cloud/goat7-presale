@@ -1,5 +1,5 @@
-import { Send } from "lucide-react";
-import { SOCIALS, NAV_LINKS } from "@/lib/goat-data";
+import { Send, Globe, Megaphone } from "lucide-react";
+import { SOCIALS, NAV_LINKS, TOKEN } from "@/lib/goat-data";
 
 const XIcon = (props) => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
@@ -47,14 +47,35 @@ export default function Footer() {
                 <XIcon className="w-4 h-4" />
               </a>
               <a
-                href={SOCIALS.telegram}
+                href={SOCIALS.telegramGroup}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Telegram"
+                aria-label="Telegram Group"
                 data-testid="footer-telegram-link"
                 className="w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/10 hover:border-[#10B981]/60 hover:text-[#10B981] text-neutral-300 transition-all"
               >
                 <Send className="w-4 h-4" />
+              </a>
+              <a
+                href={SOCIALS.telegramChannel}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Telegram Announcements Channel"
+                data-testid="footer-telegram-channel-link"
+                className="w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/10 hover:border-[#FFD700]/60 hover:text-[#FFD700] text-neutral-300 transition-all"
+                title="Announcements channel"
+              >
+                <Megaphone className="w-4 h-4" />
+              </a>
+              <a
+                href={SOCIALS.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Official website"
+                data-testid="footer-website-link"
+                className="w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/10 hover:border-white/40 hover:text-white text-neutral-300 transition-all"
+              >
+                <Globe className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -86,22 +107,32 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href={SOCIALS.whitepaper}
+                  href={SOCIALS.website}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors"
                 >
-                  Whitepaper (PDF)
+                  Official Website
                 </a>
               </li>
               <li>
                 <a
-                  href="https://solscan.io/"
+                  href={SOCIALS.telegramChannel}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors"
                 >
-                  View on Solscan
+                  Announcements Channel
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`https://solscan.io/account/${TOKEN.treasuryWallet}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors"
+                >
+                  Treasury on Solscan
                 </a>
               </li>
               <li>

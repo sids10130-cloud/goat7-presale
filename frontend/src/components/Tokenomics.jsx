@@ -31,14 +31,14 @@ export default function Tokenomics() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-5">
-          {/* Big card - total supply */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          {/* Big card - total supply (1 column on lg, full on smaller) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="md:col-span-2 md:row-span-2 relative rounded-3xl border border-white/10 bg-gradient-to-br from-[#FFD700]/15 via-[#0a0a0a] to-[#10B981]/10 p-7 md:p-9 overflow-hidden group hover:border-[#FFD700]/40 transition-colors"
+            className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-[#FFD700]/15 via-[#0a0a0a] to-[#10B981]/10 p-7 md:p-9 overflow-hidden group hover:border-[#FFD700]/40 transition-colors"
             data-testid="tokenomics-supply-card"
           >
             <div className="absolute inset-0 opacity-30 pointer-events-none"
@@ -48,60 +48,65 @@ export default function Tokenomics() {
                    backgroundBlendMode: "overlay",
                    mixBlendMode: "overlay",
                  }} />
-            <div className="relative flex flex-col h-full justify-between min-h-[280px]">
+            <div className="relative flex flex-col h-full justify-between min-h-[280px] gap-8">
               <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-[#FFD700]">
                 Total Supply
               </span>
               <div>
-                <div className="font-display font-black text-4xl md:text-5xl lg:text-[3.5rem] leading-[0.95] tracking-tighter break-words">
-                  {TOKEN.totalSupply}
+                <div className="font-display font-black text-5xl md:text-6xl lg:text-7xl leading-[0.9] tracking-tighter goat-gradient-text">
+                  {TOKEN.totalSupplyShort}
                 </div>
-                <div className="mt-3 text-neutral-300 text-sm md:text-base max-w-xs">
-                  Fixed. Mint authority revoked. Contract renounced at deploy.
+                <div className="mt-3 font-mono text-xs md:text-sm text-neutral-400 tracking-wider">
+                  {TOKEN.totalSupply} GOAT7
+                </div>
+                <div className="mt-5 text-neutral-300 text-sm md:text-base max-w-xs">
+                  Fixed forever. Mint authority revoked. Contract renounced at deployment.
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Allocation cards */}
-          {TOKENOMICS.map((item, idx) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.07 }}
-              className="md:col-span-2 rounded-2xl border border-white/10 bg-[#0a0a0a] p-6 hover:-translate-y-1 hover:border-white/30 transition-all duration-300 group"
-              data-testid={`tokenomics-card-${idx}`}
-            >
-              <div className="flex items-baseline justify-between">
-                <span className="text-[11px] uppercase tracking-[0.22em] font-bold text-neutral-400">
-                  {item.label}
-                </span>
-                <span
-                  className={`font-display font-black text-3xl md:text-4xl ${
-                    item.color === "gold" ? "text-[#FFD700]" : "text-[#10B981]"
-                  }`}
-                >
-                  {item.value}%
-                </span>
-              </div>
-              <div className="mt-4 h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${item.value * 2.5}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-                  className={`h-full rounded-full ${
-                    item.color === "gold"
-                      ? "bg-gradient-to-r from-[#FFD700] to-[#FBE14D]"
-                      : "bg-gradient-to-r from-[#10B981] to-[#34D399]"
-                  }`}
-                />
-              </div>
-              <p className="mt-4 text-sm text-neutral-500">{item.note}</p>
-            </motion.div>
-          ))}
+          {/* Allocation cards — 2-column nested grid on lg */}
+          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+            {TOKENOMICS.map((item, idx) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.07 }}
+                className="rounded-2xl border border-white/10 bg-[#0a0a0a] p-6 hover:-translate-y-1 hover:border-white/30 transition-all duration-300 group"
+                data-testid={`tokenomics-card-${idx}`}
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="text-[11px] uppercase tracking-[0.22em] font-bold text-neutral-400">
+                    {item.label}
+                  </span>
+                  <span
+                    className={`font-display font-black text-3xl md:text-4xl shrink-0 ${
+                      item.color === "gold" ? "text-[#FFD700]" : "text-[#10B981]"
+                    }`}
+                  >
+                    {item.value}%
+                  </span>
+                </div>
+                <div className="mt-4 h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${Math.min(item.value * 2.5, 100)}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                    className={`h-full rounded-full ${
+                      item.color === "gold"
+                        ? "bg-gradient-to-r from-[#FFD700] to-[#FBE14D]"
+                        : "bg-gradient-to-r from-[#10B981] to-[#34D399]"
+                    }`}
+                  />
+                </div>
+                <p className="mt-4 text-sm text-neutral-500">{item.note}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

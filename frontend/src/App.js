@@ -4,7 +4,9 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Tokenomics from "@/components/Tokenomics";
 import Roadmap from "@/components/Roadmap";
+import Security from "@/components/Security";
 import Whitepaper from "@/components/Whitepaper";
+import Community from "@/components/Community";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
@@ -16,7 +18,9 @@ function Landing() {
         <Hero />
         <Tokenomics />
         <Roadmap />
+        <Security />
         <Whitepaper />
+        <Community />
         <FAQ />
       </main>
       <Footer />

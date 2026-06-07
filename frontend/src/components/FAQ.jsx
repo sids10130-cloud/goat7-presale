@@ -23,7 +23,7 @@ export default function FAQ() {
           className="mb-12 md:mb-16"
         >
           <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-[#10B981]">
-            05 · FAQ
+            07 · FAQ
           </span>
           <h2 className="font-display font-black text-4xl md:text-6xl mt-3 tracking-[-0.03em]">
             Questions, <span className="goat-gradient-text">answered.</span>
@@ -68,7 +68,7 @@ export default function FAQ() {
           <p className="text-neutral-400 text-sm">
             Still have questions? Join the herd on{" "}
             <a
-              href={SOCIALS.telegram}
+              href={SOCIALS.telegramGroup}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#10B981] hover:text-[#34D399] underline-offset-4 hover:underline"

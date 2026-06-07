@@ -61,13 +61,13 @@ export default function Header() {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-8" data-testid="desktop-nav">
+        <nav className="hidden xl:flex items-center gap-7" data-testid="desktop-nav">
           {NAV_LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
               data-testid={`nav-link-${l.label.toLowerCase()}`}
-              className="text-sm text-neutral-400 hover:text-[#FFD700] transition-colors uppercase tracking-[0.18em] font-medium"
+              className="text-[11px] text-neutral-400 hover:text-[#FFD700] transition-colors uppercase tracking-[0.18em] font-semibold"
             >
               {l.label}
             </a>
@@ -87,7 +87,7 @@ export default function Header() {
             <XIcon className="w-3.5 h-3.5" />
           </a>
           <a
-            href={SOCIALS.telegram}
+            href={SOCIALS.telegramGroup}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Telegram"
@@ -95,6 +95,17 @@ export default function Header() {
             className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full border border-white/10 hover:border-[#10B981]/60 hover:text-[#10B981] text-neutral-300 transition-all"
           >
             <Send className="w-4 h-4" />
+          </a>
+
+          {/* Buy CTA */}
+          <a
+            href={SOCIALS.buy}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="header-buy-button"
+            className="hidden md:inline-flex items-center gap-1.5 px-4 h-10 rounded-full bg-[#10B981] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#34D399] transition-all shadow-[0_0_20px_-6px_rgba(16,185,129,0.8)]"
+          >
+            Buy GOAT7
           </a>
 
           {/* Phantom connect */}
@@ -120,7 +131,7 @@ export default function Header() {
           {/* Mobile menu */}
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            className="lg:hidden w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/10"
+            className="xl:hidden w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/10"
             aria-label="Menu"
             data-testid="mobile-menu-toggle"
           >
@@ -136,7 +147,7 @@ export default function Header() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden overflow-hidden border-t border-white/10 bg-[#050505]/95 backdrop-blur-2xl"
+            className="xl:hidden overflow-hidden border-t border-white/10 bg-[#050505]/95 backdrop-blur-2xl"
             data-testid="mobile-nav"
           >
             <nav className="px-5 py-6 flex flex-col gap-4">
@@ -151,8 +162,18 @@ export default function Header() {
                 </a>
               ))}
               <div className="flex items-center gap-3 pt-3 border-t border-white/10">
+                <a
+                  href={SOCIALS.buy}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileOpen(false)}
+                  className="inline-flex items-center gap-2 px-4 h-10 rounded-full bg-[#10B981] text-black font-bold text-xs uppercase tracking-wider"
+                  data-testid="mobile-buy-button"
+                >
+                  Buy GOAT7
+                </a>
                 <a href={SOCIALS.twitter} target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-[#FFD700]"><XIcon className="w-4 h-4" /></a>
-                <a href={SOCIALS.telegram} target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-[#10B981]"><Send className="w-4 h-4" /></a>
+                <a href={SOCIALS.telegramGroup} target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-[#10B981]"><Send className="w-4 h-4" /></a>
               </div>
             </nav>
           </motion.div>
