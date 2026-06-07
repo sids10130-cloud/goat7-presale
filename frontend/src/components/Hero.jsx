@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
-import { Copy, Sparkles, Check, Wallet, ShoppingBag, Send, ShieldCheck } from "lucide-react";
+import { Copy, Sparkles, Check, ShoppingBag, Send } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { TOKEN, SOCIALS } from "@/lib/goat-data";
-import { usePhantom } from "@/hooks/usePhantom";
 
 const stagger = {
   hidden: {},
@@ -14,12 +13,20 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
-const truncate = (s, head = 4, tail = 4) => (s ? `${s.slice(0, head)}…${s.slice(-tail)}` : "");
+const XIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+const DiscordIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+    <path d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3l-.18.319c1.7.464 2.477.992 3.29 1.643a13.5 13.5 0 0 0-4.885-1.567 12.4 12.4 0 0 0-3.566 0 13.5 13.5 0 0 0-4.886 1.567c.813-.65 1.59-1.179 3.29-1.643L9.44 3a19.79 19.79 0 0 0-3.76 1.369C2.823 8.62 2.04 12.77 2.43 16.86c1.5 1.115 2.954 1.793 4.385 2.239a14.6 14.6 0 0 0 1.255-2.04 8.6 8.6 0 0 1-1.98-.949c.167-.122.33-.249.488-.379 3.823 1.785 7.953 1.785 11.73 0 .16.13.322.257.49.379a8.6 8.6 0 0 1-1.984.95c.36.71.78 1.392 1.255 2.04 1.431-.446 2.886-1.124 4.385-2.24.46-4.745-.788-8.857-3.137-12.491zM9.679 14.527c-.882 0-1.6-.815-1.6-1.819 0-1.003.704-1.819 1.6-1.819.893 0 1.612.816 1.6 1.819 0 1.004-.707 1.819-1.6 1.819zm4.643 0c-.881 0-1.6-.815-1.6-1.819 0-1.003.706-1.819 1.6-1.819.894 0 1.613.816 1.6 1.819 0 1.004-.706 1.819-1.6 1.819z" />
+  </svg>
+);
 
 export default function Hero() {
   const [copiedCA, setCopiedCA] = useState(false);
-  const [copiedTreasury, setCopiedTreasury] = useState(false);
-  const { publicKey, balance, connecting, connect, isPhantomInstalled } = usePhantom();
 
   const handleCopy = async (value, setFlag) => {
     try {
@@ -29,17 +36,6 @@ export default function Hero() {
       setTimeout(() => setFlag(false), 1800);
     } catch {
       toast.error("Failed to copy");
-    }
-  };
-
-  const handleConnect = async () => {
-    const pk = await connect();
-    if (pk) {
-      toast.success("Wallet connected", { description: truncate(pk) });
-    } else if (!isPhantomInstalled) {
-      toast.error("Phantom not detected", {
-        description: "Install Phantom to continue. Opening phantom.app…",
-      });
     }
   };
 
@@ -96,51 +92,51 @@ export default function Hero() {
             {/* CTA Buttons */}
             <motion.div
               variants={fadeUp}
-              className="mt-9 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
+              className="mt-9 flex flex-col items-start gap-5"
               data-testid="hero-cta-group"
             >
-              <button
-                onClick={handleConnect}
-                disabled={connecting}
-                data-testid="hero-connect-wallet-button"
-                className="group inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-[#FFD700] text-black font-bold text-sm hover:bg-[#FBE14D] transition-all shadow-[0_0_40px_-8px_rgba(255,215,0,0.7)] disabled:opacity-60"
-              >
-                <Wallet className="w-4 h-4" />
-                {publicKey ? (
-                  <span className="font-mono text-xs">
-                    {truncate(publicKey)} · {balance === null ? "…" : `${balance.toFixed(3)} SOL`}
-                  </span>
-                ) : (
-                  <span>{connecting ? "Connecting…" : "Connect Wallet"}</span>
-                )}
-              </button>
-
               <a
                 href={SOCIALS.buy}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="hero-buy-button"
-                className="group inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-[#10B981] text-black font-bold text-sm hover:bg-[#34D399] transition-all shadow-[0_0_40px_-8px_rgba(16,185,129,0.7)]"
+                className="group inline-flex items-center justify-center gap-2 h-12 px-7 rounded-full bg-[#FFD700] text-black font-bold text-sm hover:bg-[#FBE14D] transition-all shadow-[0_0_40px_-8px_rgba(255,215,0,0.7)]"
               >
                 <ShoppingBag className="w-4 h-4" />
                 Buy GOAT7
               </a>
 
-              <a
-                href={SOCIALS.telegramGroup}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="hero-telegram-button"
-                className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full border-2 border-[#FFD700]/60 text-[#FFD700] font-bold text-sm hover:bg-[#FFD700]/10 hover:border-[#FFD700] transition-all"
-              >
-                <Send className="w-4 h-4" />
-                Join Telegram
-              </a>
+              {/* Social icons row */}
+              <div className="flex items-center gap-3" data-testid="hero-socials">
+                <a
+                  href="#"
+                  aria-label="Telegram"
+                  data-testid="hero-social-telegram"
+                  className="w-11 h-11 inline-flex items-center justify-center rounded-full border border-white/15 text-neutral-300 hover:border-[#FFD700]/60 hover:text-[#FFD700] transition-all"
+                >
+                  <Send className="w-4 h-4" />
+                </a>
+                <a
+                  href="#"
+                  aria-label="X (Twitter)"
+                  data-testid="hero-social-x"
+                  className="w-11 h-11 inline-flex items-center justify-center rounded-full border border-white/15 text-neutral-300 hover:border-[#FFD700]/60 hover:text-[#FFD700] transition-all"
+                >
+                  <XIcon className="w-3.5 h-3.5" />
+                </a>
+                <a
+                  href="#"
+                  aria-label="Discord"
+                  data-testid="hero-social-discord"
+                  className="w-11 h-11 inline-flex items-center justify-center rounded-full border border-white/15 text-neutral-300 hover:border-[#10B981]/60 hover:text-[#10B981] transition-all"
+                >
+                  <DiscordIcon className="w-4 h-4" />
+                </a>
+              </div>
             </motion.div>
 
-            {/* CA + Treasury boxes */}
-            <motion.div variants={fadeUp} className="mt-10 space-y-3" data-testid="hero-wallet-boxes">
-              {/* Contract Address */}
+            {/* CA box */}
+            <motion.div variants={fadeUp} className="mt-10" data-testid="hero-wallet-boxes">
               <div
                 className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 sm:p-3 sm:pl-5 rounded-2xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl"
                 data-testid="contract-address-box"
@@ -163,32 +159,6 @@ export default function Hero() {
                 >
                   {copiedCA ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                   {copiedCA ? "Copied" : "Copy"}
-                </button>
-              </div>
-
-              {/* Treasury Wallet */}
-              <div
-                className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 sm:p-3 sm:pl-5 rounded-2xl border border-[#10B981]/30 bg-[#10B981]/5 backdrop-blur-xl"
-                data-testid="treasury-wallet-box"
-              >
-                <div className="flex flex-col min-w-0 flex-1">
-                  <span className="text-[10px] uppercase tracking-[0.25em] text-[#10B981] font-bold flex items-center gap-1.5">
-                    <ShieldCheck className="w-3 h-3" /> Treasury Wallet (Public)
-                  </span>
-                  <span
-                    className="font-mono text-xs md:text-sm text-white mt-1 truncate"
-                    data-testid="treasury-wallet-value"
-                  >
-                    {TOKEN.treasuryWallet}
-                  </span>
-                </div>
-                <button
-                  onClick={() => handleCopy(TOKEN.treasuryWallet, setCopiedTreasury)}
-                  data-testid="copy-treasury-button"
-                  className="inline-flex items-center justify-center gap-2 h-10 px-4 rounded-full bg-[#10B981] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#34D399] transition-all whitespace-nowrap shrink-0"
-                >
-                  {copiedTreasury ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                  {copiedTreasury ? "Copied" : "Copy"}
                 </button>
               </div>
             </motion.div>
@@ -229,16 +199,15 @@ export default function Hero() {
                 className="absolute inset-8 rounded-full border border-dashed border-[#10B981]/30"
               />
 
-              {/* Mascot image — premium dark goat profile */}
+              {/* Mascot image — premium 3D crypto goat */}
               <div className="absolute inset-6 md:inset-10 rounded-full overflow-hidden border-2 border-[#FFD700]/40 goat-glow-gold">
                 <img
-                  src="https://images.pexels.com/photos/33449890/pexels-photo-33449890.jpeg"
-                  alt="GOAT7 mascot"
+                  src="/mascot-goat.png"
+                  alt="GOAT7 premium crypto mascot"
                   loading="eager"
-                  className="w-full h-full object-cover scale-110"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/10 via-transparent to-[#10B981]/15 mix-blend-overlay" />
               </div>
 
               {/* Floating chips */}

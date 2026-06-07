@@ -1,5 +1,5 @@
 import { Send, Globe, Megaphone } from "lucide-react";
-import { SOCIALS, NAV_LINKS, TOKEN } from "@/lib/goat-data";
+import { SOCIALS, NAV_LINKS } from "@/lib/goat-data";
 
 const XIcon = (props) => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
@@ -123,16 +123,6 @@ export default function Footer() {
                   className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors"
                 >
                   Announcements Channel
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`https://solscan.io/account/${TOKEN.treasuryWallet}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors"
-                >
-                  Treasury on Solscan
                 </a>
               </li>
               <li>

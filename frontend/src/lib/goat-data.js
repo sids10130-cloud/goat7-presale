@@ -7,7 +7,6 @@ export const TOKEN = {
   network: "Solana",
   totalSupply: "10,000,000,000",
   totalSupplyShort: "10B",
-  treasuryWallet: "GqQCMmPf1sKRWaix85B79DNpgHGc8SrMNGec44q8mwg5",
 };
 
 export const SOCIALS = {
@@ -16,7 +15,7 @@ export const SOCIALS = {
   website: "https://cr7goat.xyz",
   buy: "https://cr7goat.xyz",
   twitter: "https://x.com/CR7GOATarmy",
-  whitepaper: "/goat7-whitepaper.pdf",
+  whitepaper: "#",
 };
 
 export const NAV_LINKS = [
@@ -95,7 +94,7 @@ export const FAQS = [
   },
   {
     q: "Is the liquidity locked?",
-    a: "Yes. At DEX launch, 100% of the initial liquidity pool will be burned. The team wallet vests linearly over 12 months and the treasury is held in a multi-signature wallet — all fully on-chain verifiable.",
+    a: "Yes. At DEX launch, 100% of the initial liquidity pool will be burned. The team wallet vests linearly over 12 months — all fully on-chain verifiable.",
   },
   {
     q: "What is the total supply?",
@@ -104,10 +103,6 @@ export const FAQS = [
   {
     q: "Are there taxes or fees?",
     a: "Zero buy tax. Zero sell tax. Just standard Solana network fees (roughly $0.0005 per transaction). What you swap is exactly what you get.",
-  },
-  {
-    q: "Where can I see the treasury wallet?",
-    a: "The treasury wallet GqQCMmPf1sKRWaix85B79DNpgHGc8SrMNGec44q8mwg5 is public and fully transparent. You can audit it on Solscan or Solana Explorer at any time.",
   },
   {
     q: "Is this affiliated with any athlete, celebrity, or brand?",
@@ -129,8 +124,8 @@ export const SECURITY_PILLARS = [
     body: "Upgrade and freeze authorities are revoked. The contract is fully immutable and trustless.",
   },
   {
-    title: "Multi-Sig Treasury",
-    body: "Treasury wallet is governed by a multi-signature setup — no single party can move funds unilaterally.",
+    title: "Community Governed",
+    body: "Major project decisions are made transparently with community participation.",
   },
   {
     title: "Audited Codebase",

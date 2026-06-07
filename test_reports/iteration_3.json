@@ -1,0 +1,33 @@
+{
+  "summary": "Frontend-only verification of iteration 3 targeted changes (treasury removal, mascot swap, Buy GOAT7 CTA, hero social icons, security pillar rename). 11 of 12 acceptance criteria pass; 1 real bug found — ROADMAP Phase 01 still references 'Treasury wallet & multi-sig setup'.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Roadmap (goat-data.js -> ROADMAP[0].items[0])",
+        "issue": "Phase 01 still lists 'Treasury wallet & multi-sig setup' as a bullet. Violates spec 'remove all references to Treasury Wallet ... Multi-Sig Treasury throughout site.' Visible in DOM under #roadmap section.",
+        "selector": "#roadmap (Phase 01 card bullet list)",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/test_reports/iteration_3.json"],
+  "action_items": [
+    "Edit /app/frontend/src/lib/goat-data.js ROADMAP[0].items: replace 'Treasury wallet & multi-sig setup' with a neutral milestone such as 'Community channels & contributor onboarding' or simply remove the item. After fix, verify page contains neither 'treasury' nor 'multi-sig' substrings (case-insensitive) anywhere outside the disclaimer/FAQ disclaimers."
+  ],
+  "critical_code_review_comments": [
+    "ROADMAP Phase 01 first bullet still contains 'Treasury wallet & multi-sig setup' — the data file change missed this entry while removing treasury elsewhere.",
+    "All other iteration-3 surfaces correctly updated: Hero treasury box & copy-treasury-button removed, CA still shows 'TBA' with working copy toast, hero-buy-button renders 'Buy GOAT7' wired to SOCIALS.buy, three href='#' social icons (telegram/x/discord) present with correct data-testids, mascot /mascot-goat.png loads (1024x1024, 200), Security pillar index 3 correctly renamed to 'Community Governed' with required body copy, Whitepaper button fires 'coming soon' toast (href='#'), Footer Treasury on Solscan removed and Resources list shows the 4 expected items, FAQ section contains no 'treasury wallet' text, no JS page errors on load.",
+    "Header still exposes a 'Connect Wallet' button — explicitly allowed by spec (only hero CTA was to be renamed)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped per request)", "frontend": "92% (11/12 acceptance criteria)"},
+  "test_credentials": "n/a",
+  "seed_data_creation": "none",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "All hero/security/footer/whitepaper/mascot/mobile criteria verified pass. Only remaining failure is the ROADMAP Phase 01 bullet 'Treasury wallet & multi-sig setup' in /app/frontend/src/lib/goat-data.js line ~44. After main agent fixes, retest by checking that document.body.innerText (case-insensitive) contains neither 'treasury wallet' nor 'multi-sig' anywhere on the home page. Note: tokenomics & FAQ data-testid patterns differ from my probe selectors — they render via tabs/accordions; existing iteration_2 confirmed they work, so no further action needed there.",
+  "rca_of_the_issue": "When refactoring treasury references in iteration 3, the developer cleaned the TOKEN object, Hero component, Footer, FAQ array, and SECURITY_PILLARS in goat-data.js, but missed the ROADMAP[0].items[0] string literal 'Treasury wallet & multi-sig setup' inside the same file. Reproduction: visit https://solana-goat-token.preview.emergentagent.com, scroll to #roadmap, observe Phase 01 card -> first bullet. Mitigation: replace that bullet text in /app/frontend/src/lib/goat-data.js (hot reload will pick it up; no restart needed)."
+}
