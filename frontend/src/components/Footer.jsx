@@ -1,5 +1,5 @@
-import { Send, Globe, Megaphone } from "lucide-react";
-import { SOCIALS, NAV_LINKS } from "@/lib/goat-data";
+import { Send, Globe, ExternalLink } from "lucide-react";
+import { SOCIALS, NAV_LINKS, TOKEN } from "@/lib/goat-data";
 
 const XIcon = (props) => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
@@ -16,23 +16,23 @@ export default function Footer() {
       <div className="goat-hr absolute top-0 left-0 right-0" />
 
       <div className="max-w-7xl mx-auto">
-        {/* Big logo line */}
         <div className="font-display font-black text-[18vw] md:text-[14vw] leading-[0.85] tracking-[-0.04em] text-white/[0.06] select-none -mb-2 md:-mb-4">
           GOAT<span className="text-[#FFD700]/20">7</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pt-10 border-t border-white/10">
-          {/* Brand */}
           <div className="md:col-span-5">
             <div className="flex items-center gap-2.5 mb-5">
               <div className="w-9 h-9 hex-clip bg-gradient-to-br from-[#FFD700] to-[#10B981] flex items-center justify-center">
                 <span className="font-display font-black text-black text-sm">G7</span>
               </div>
-              <span className="font-display font-black text-xl">GOAT<span className="text-[#FFD700]">7</span></span>
+              <span className="font-display font-black text-xl">
+                GOAT<span className="text-[#FFD700]">7</span>
+              </span>
             </div>
             <p className="text-sm text-neutral-400 leading-relaxed max-w-md">
-              An original Solana community meme token. Not affiliated with any
-              celebrity, athlete, sports organization, or third-party brand.
+              An original Solana community meme token. Not affiliated with any celebrity,
+              athlete, sports organization, or third-party brand.
             </p>
 
             <div className="mt-6 flex items-center gap-3">
@@ -47,31 +47,20 @@ export default function Footer() {
                 <XIcon className="w-4 h-4" />
               </a>
               <a
-                href={SOCIALS.telegramGroup}
+                href={SOCIALS.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Telegram Group"
+                aria-label="Telegram"
                 data-testid="footer-telegram-link"
                 className="w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/10 hover:border-[#10B981]/60 hover:text-[#10B981] text-neutral-300 transition-all"
               >
                 <Send className="w-4 h-4" />
               </a>
               <a
-                href={SOCIALS.telegramChannel}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Telegram Announcements Channel"
-                data-testid="footer-telegram-channel-link"
-                className="w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/10 hover:border-[#FFD700]/60 hover:text-[#FFD700] text-neutral-300 transition-all"
-                title="Announcements channel"
-              >
-                <Megaphone className="w-4 h-4" />
-              </a>
-              <a
                 href={SOCIALS.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Official website"
+                aria-label="Website"
                 data-testid="footer-website-link"
                 className="w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/10 hover:border-white/40 hover:text-white text-neutral-300 transition-all"
               >
@@ -80,7 +69,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Navigation */}
           <div className="md:col-span-3">
             <div className="text-[11px] uppercase tracking-[0.25em] font-bold text-[#FFD700] mb-5">
               Explore
@@ -99,7 +87,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Resources */}
           <div className="md:col-span-4">
             <div className="text-[11px] uppercase tracking-[0.25em] font-bold text-[#10B981] mb-5">
               Resources
@@ -110,29 +97,29 @@ export default function Footer() {
                   href={SOCIALS.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors"
+                  className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors inline-flex items-center gap-1.5"
                 >
-                  Official Website
+                  goat7.xyz <ExternalLink className="w-3 h-3" />
                 </a>
               </li>
               <li>
                 <a
-                  href={SOCIALS.telegramChannel}
+                  href={`https://solscan.io/token/${TOKEN.mintAddress}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors"
+                  className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors inline-flex items-center gap-1.5"
                 >
-                  Announcements Channel
+                  Solscan token page <ExternalLink className="w-3 h-3" />
                 </a>
               </li>
               <li>
                 <a
-                  href="https://dexscreener.com/solana"
+                  href={`https://explorer.solana.com/address/${TOKEN.mintAddress}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors"
+                  className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors inline-flex items-center gap-1.5"
                 >
-                  DexScreener Chart
+                  Solana Explorer <ExternalLink className="w-3 h-3" />
                 </a>
               </li>
               <li>
@@ -142,7 +129,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-sm text-neutral-300 hover:text-[#10B981] transition-colors"
                 >
-                  Get Phantom Wallet
+                  Get a Solana wallet
                 </a>
               </li>
             </ul>
@@ -160,11 +147,11 @@ export default function Footer() {
 
         <p className="mt-6 text-[11px] text-neutral-600 leading-relaxed max-w-3xl">
           <span className="text-neutral-500 font-semibold">Disclaimer:</span> $GOAT7 is a meme
-          token with no intrinsic value or expectation of financial return. There is no formal
-          team, roadmap, or guarantee. GOAT7 is an original community project and is not
-          affiliated with, endorsed by, or associated with any celebrity, athlete, sports
-          organization, league, or third-party brand. Cryptocurrency is highly volatile — only
-          spend what you can afford to lose. Nothing on this site constitutes financial advice.
+          token with no intrinsic value or expectation of financial return. GOAT7 is an original
+          community project and is not affiliated with, endorsed by, or associated with any
+          celebrity, athlete, sports organization, league, or third-party brand. Cryptocurrency
+          is highly volatile — only spend what you can afford to lose. Nothing on this site
+          constitutes financial advice.
         </p>
       </div>
     </footer>

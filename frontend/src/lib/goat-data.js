@@ -1,83 +1,104 @@
-// GOAT7 site-wide constants
+// GOAT7 — Production constants
+const env = process.env;
+
 export const TOKEN = {
   name: "GOAT7",
   ticker: "$GOAT7",
   tagline: "The King of Solana Meme Coins",
-  contractAddress: "TBA",
   network: "Solana",
-  totalSupply: "10,000,000,000",
+  mintAddress: env.REACT_APP_MINT_ADDRESS,
+  totalSupply: 10_000_000_000,
+  totalSupplyDisplay: "10,000,000,000",
   totalSupplyShort: "10B",
 };
 
+export const PRESALE = {
+  recipient: env.REACT_APP_PRESALE_RECIPIENT,
+  rpcEndpoint: env.REACT_APP_SOLANA_RPC,
+  walletConnectProjectId: env.REACT_APP_WC_PROJECT_ID || "",
+  // Allocations (token amounts)
+  presaleAllocation: 1_000_000_000,
+  // Prices in SOL
+  salePrice: 0.0000001,
+  launchPrice: 0.00000012,
+  tokensPerSol: 10_000_000, // 1 / salePrice
+  // Caps in SOL
+  minBuy: 0.05,
+  maxBuy: 5,
+  softCap: 20,
+  hardCap: 100,
+  // Schedule
+  startISO: "2026-06-12T00:00:00Z",
+  endISO: "2026-07-20T23:59:59Z",
+  startDisplay: "12 June 2026",
+  endDisplay: "20 July 2026",
+};
+
 export const SOCIALS = {
-  telegramGroup: "https://t.me/CR7GOATarmy",
-  telegramChannel: "https://t.me/CR7GOATAnnouncements",
-  website: "https://cr7goat.xyz",
-  buy: "https://cr7goat.xyz",
-  twitter: "https://x.com/CR7GOATarmy",
-  whitepaper: "#",
+  telegram: "https://t.me/GOAT7Official",
+  twitter: "https://x.com/GOAT7official",
+  website: "https://goat7.xyz",
 };
 
 export const NAV_LINKS = [
+  { label: "Presale", href: "#presale" },
   { label: "Tokenomics", href: "#tokenomics" },
   { label: "Roadmap", href: "#roadmap" },
   { label: "Security", href: "#security" },
-  { label: "Whitepaper", href: "#whitepaper" },
-  { label: "Community", href: "#community" },
   { label: "FAQ", href: "#faq" },
 ];
 
+// Tokenomics — exact token amounts as specified
 export const TOKENOMICS = [
-  { label: "Presale", value: 40, color: "gold", note: "Public presale allocation" },
-  { label: "Liquidity", value: 25, color: "green", note: "Locked & burned LP" },
-  { label: "Marketing", value: 15, color: "gold", note: "Influencers & campaigns" },
-  { label: "Team (Locked)", value: 10, color: "green", note: "12-month linear vesting" },
-  { label: "Community Rewards", value: 7, color: "gold", note: "Airdrops, raids, contests" },
-  { label: "CEX Listings", value: 3, color: "green", note: "Tier-1 exchange reserves" },
+  { label: "Liquidity", amount: 3_000_000_000, percent: 30, color: "green", note: "DEX listing liquidity pool" },
+  { label: "Marketing", amount: 1_500_000_000, percent: 15, color: "gold", note: "Influencer & growth campaigns" },
+  { label: "Presale", amount: 1_000_000_000, percent: 10, color: "gold", note: "Public presale allocation" },
+  { label: "Community Rewards", amount: 1_000_000_000, percent: 10, color: "green", note: "Airdrops & engagement" },
+  { label: "Team", amount: 500_000_000, percent: 5, color: "green", note: "Locked vesting schedule" },
 ];
 
 export const ROADMAP = [
   {
     phase: "Phase 01",
-    title: "Genesis & Presale",
+    title: "Token Genesis",
     items: [
-      "Smart contract deployment",
-      "Public presale launch",
-      "Whitepaper v1.0 release",
-      "Community Telegram & X go live",
+      "Token mint deployed on Solana",
+      "Mint, freeze & update authorities revoked",
+      "Official socials launched",
+      "Community Telegram & X live",
     ],
     status: "live",
   },
   {
     phase: "Phase 02",
-    title: "DEX Launch",
+    title: "Presale (12 Jun — 20 Jul 2026)",
     items: [
-      "Raydium liquidity seeded",
-      "LP tokens burned (verifiable on-chain)",
-      "DexScreener trending",
-      "First 10,000 holders",
+      "Public presale opens",
+      "Hard cap 100 SOL",
+      "Real-time on-chain tracker",
+      "Multi-wallet support",
     ],
     status: "next",
   },
   {
     phase: "Phase 03",
-    title: "Tier-1 Listings",
+    title: "DEX Launch",
     items: [
-      "CoinGecko & CoinMarketCap listings",
-      "First centralized exchange listing",
-      "Trading competitions & buyback events",
-      "Strategic partnerships",
+      "Raydium liquidity seeded (30% supply)",
+      "Trading goes live",
+      "Token distribution to presale buyers",
+      "DexScreener listing",
     ],
     status: "soon",
   },
   {
     phase: "Phase 04",
-    title: "Ecosystem",
+    title: "Growth & Ecosystem",
     items: [
-      "GOAT7 NFT collection",
-      "Staking & rewards module",
-      "Merch drop & community grants",
-      "Cross-chain bridge to ETH/BSC",
+      "CoinGecko & CoinMarketCap listings",
+      "Tier-1 CEX outreach",
+      "Marketing & partnerships",
+      "Community-driven roadmap v2",
     ],
     status: "future",
   },
@@ -89,74 +110,65 @@ export const FAQS = [
     a: "GOAT7 is an original community-driven meme token on the Solana blockchain. It is a culture coin built by the community, for the community. GOAT7 is not affiliated with any celebrity, athlete, sports organization, or third-party brand.",
   },
   {
-    q: "How do I buy GOAT7?",
-    a: "Join our presale via cr7goat.xyz by connecting your Phantom wallet. Once the public DEX launch is live, you'll be able to swap SOL for GOAT7 directly on Raydium or Jupiter using the official contract address.",
+    q: "When is the presale?",
+    a: "The public presale runs from 12 June 2026 to 20 July 2026. Sale price is 0.0000001 SOL per GOAT7. Min buy 0.05 SOL, max buy 5 SOL per wallet. Hard cap 100 SOL.",
   },
   {
-    q: "Is the liquidity locked?",
-    a: "Yes. At DEX launch, 100% of the initial liquidity pool will be burned. The team wallet vests linearly over 12 months — all fully on-chain verifiable.",
+    q: "How do I participate?",
+    a: "Connect any supported wallet (Phantom, Solflare, Backpack, Trust Wallet, Coinbase Wallet, or WalletConnect), enter the amount of SOL you want to contribute, and confirm the transaction. Tokens will be airdropped to your wallet after the presale concludes and DEX trading goes live.",
+  },
+  {
+    q: "What wallets are supported?",
+    a: "Phantom, Solflare, Backpack, Trust Wallet, Coinbase Wallet and WalletConnect (mobile wallets). Choose your wallet from the Connect modal.",
+  },
+  {
+    q: "Is the contract verified and safe?",
+    a: "Yes. Mint authority, freeze authority and update authority have all been revoked at deployment. The supply is permanently fixed at 10,000,000,000 GOAT7. You can verify the token on Solscan using the mint address.",
   },
   {
     q: "What is the total supply?",
-    a: "10,000,000,000 GOAT7 — fixed forever. No mint authority, no upgrade authority. The contract is renounced at deployment, making the supply immutable.",
+    a: "10,000,000,000 GOAT7 — permanently fixed. No new tokens can ever be minted.",
   },
   {
     q: "Are there taxes or fees?",
-    a: "Zero buy tax. Zero sell tax. Just standard Solana network fees (roughly $0.0005 per transaction). What you swap is exactly what you get.",
+    a: "Zero buy tax. Zero sell tax. Only standard Solana network fees (roughly $0.0005 per transaction).",
   },
   {
     q: "Is this affiliated with any athlete, celebrity, or brand?",
-    a: "No. GOAT7 is a 100% original community meme token. It is not affiliated with, endorsed by, or associated with any celebrity, athlete, sports league, organization, or third-party brand. All references in the project are fan-driven cultural memes.",
+    a: "No. GOAT7 is a 100% original community meme token. It is not affiliated with, endorsed by, or associated with any celebrity, athlete, sports league, organization, or third-party brand.",
   },
 ];
 
+// Production security pillars (per spec)
 export const SECURITY_PILLARS = [
   {
-    title: "LP Burned at Launch",
-    body: "100% of initial liquidity is burned on day one. Burn transaction is publicly verifiable on Solscan.",
-  },
-  {
     title: "Mint Authority Revoked",
-    body: "No new tokens can ever be minted. The supply is permanently fixed at 10B GOAT7.",
+    body: "The token's mint authority has been permanently revoked. No new GOAT7 can ever be created.",
+    status: "done",
   },
   {
-    title: "Contract Renounced",
-    body: "Upgrade and freeze authorities are revoked. The contract is fully immutable and trustless.",
+    title: "Freeze Authority Revoked",
+    body: "Freeze authority is revoked. Your tokens can never be frozen by anyone.",
+    status: "done",
   },
   {
-    title: "Community Governed",
-    body: "Major project decisions are made transparently with community participation.",
+    title: "Update Authority Revoked",
+    body: "Token metadata is immutable. The contract cannot be altered or upgraded.",
+    status: "done",
   },
   {
-    title: "Audited Codebase",
-    body: "SPL token program is the standard, battle-tested Solana token contract used by 99% of legitimate projects.",
+    title: "Community Driven",
+    body: "GOAT7 is built and grown entirely by its community of holders.",
+    status: "done",
   },
   {
-    title: "Doxxed Community",
-    body: "Active, transparent community channels with real-time updates. No anonymous shadow team decisions.",
-  },
-];
-
-export const COMMUNITY_CHANNELS = [
-  {
-    name: "Telegram Group",
-    handle: "@CR7GOATarmy",
-    description: "The main hangout — memes, alpha, and 24/7 herd chat.",
-    href: "https://t.me/CR7GOATarmy",
-    accent: "green",
+    title: "Fair Distribution",
+    body: "Transparent token allocation with public presale and on-chain verification.",
+    status: "done",
   },
   {
-    name: "Telegram Channel",
-    handle: "@CR7GOATAnnouncements",
-    description: "Official announcements only. No noise, just signal.",
-    href: "https://t.me/CR7GOATAnnouncements",
-    accent: "gold",
-  },
-  {
-    name: "Official Website",
-    handle: "cr7goat.xyz",
-    description: "Presale dashboard, whitepaper, and live stats.",
-    href: "https://cr7goat.xyz",
-    accent: "green",
+    title: "Solana Network",
+    body: "Built on Solana — fast, low-cost, energy-efficient and battle-tested at scale.",
+    status: "done",
   },
 ];

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Copy, Sparkles, Check, ShoppingBag, Send } from "lucide-react";
+import { Copy, Sparkles, Check, Send, ExternalLink, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { TOKEN, SOCIALS } from "@/lib/goat-data";
@@ -19,21 +19,15 @@ const XIcon = (props) => (
   </svg>
 );
 
-const DiscordIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
-    <path d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3l-.18.319c1.7.464 2.477.992 3.29 1.643a13.5 13.5 0 0 0-4.885-1.567 12.4 12.4 0 0 0-3.566 0 13.5 13.5 0 0 0-4.886 1.567c.813-.65 1.59-1.179 3.29-1.643L9.44 3a19.79 19.79 0 0 0-3.76 1.369C2.823 8.62 2.04 12.77 2.43 16.86c1.5 1.115 2.954 1.793 4.385 2.239a14.6 14.6 0 0 0 1.255-2.04 8.6 8.6 0 0 1-1.98-.949c.167-.122.33-.249.488-.379 3.823 1.785 7.953 1.785 11.73 0 .16.13.322.257.49.379a8.6 8.6 0 0 1-1.984.95c.36.71.78 1.392 1.255 2.04 1.431-.446 2.886-1.124 4.385-2.24.46-4.745-.788-8.857-3.137-12.491zM9.679 14.527c-.882 0-1.6-.815-1.6-1.819 0-1.003.704-1.819 1.6-1.819.893 0 1.612.816 1.6 1.819 0 1.004-.707 1.819-1.6 1.819zm4.643 0c-.881 0-1.6-.815-1.6-1.819 0-1.003.706-1.819 1.6-1.819.894 0 1.613.816 1.6 1.819 0 1.004-.706 1.819-1.6 1.819z" />
-  </svg>
-);
-
 export default function Hero() {
   const [copiedCA, setCopiedCA] = useState(false);
 
-  const handleCopy = async (value, setFlag) => {
+  const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(value);
-      setFlag(true);
-      toast.success("Copied to clipboard", { description: value });
-      setTimeout(() => setFlag(false), 1800);
+      await navigator.clipboard.writeText(TOKEN.mintAddress);
+      setCopiedCA(true);
+      toast.success("Contract address copied", { description: TOKEN.mintAddress });
+      setTimeout(() => setCopiedCA(false), 1800);
     } catch {
       toast.error("Failed to copy");
     }
@@ -67,7 +61,7 @@ export default function Hero() {
             >
               <Sparkles className="w-3.5 h-3.5 text-[#FFD700]" />
               <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-bold text-[#FFD700]">
-                Live on Solana · Presale Open
+                Live on Solana · Presale 12 Jun → 20 Jul 2026
               </span>
             </motion.div>
 
@@ -75,8 +69,12 @@ export default function Hero() {
               variants={fadeUp}
               className="font-display font-black text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] leading-[0.95] tracking-[-0.04em]"
             >
-              <span className="block lg:whitespace-nowrap">GOAT<span className="text-[#FFD700]">7</span></span>
-              <span className="block lg:whitespace-nowrap mt-1 sm:mt-2 goat-gradient-text">The King of</span>
+              <span className="block lg:whitespace-nowrap">
+                GOAT<span className="text-[#FFD700]">7</span>
+              </span>
+              <span className="block lg:whitespace-nowrap mt-1 sm:mt-2 goat-gradient-text">
+                The King of
+              </span>
               <span className="block lg:whitespace-nowrap">Solana Memes.</span>
             </motion.h1>
 
@@ -84,40 +82,42 @@ export default function Hero() {
               variants={fadeUp}
               className="mt-7 max-w-xl text-base sm:text-lg md:text-xl text-neutral-300 leading-relaxed"
             >
-              <span className="text-white font-semibold">$GOAT7</span> is a premium community-driven
-              Solana meme coin built for the herd. Fair launch, locked liquidity, zero taxes,
-              and a roadmap that runs to the top.
+              <span className="text-white font-semibold">$GOAT7</span> is a premium
+              community-driven Solana meme coin. Mint, freeze and update authorities are
+              revoked. Fair launch, locked liquidity, zero taxes.
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTAs */}
             <motion.div
               variants={fadeUp}
               className="mt-9 flex flex-col items-start gap-5"
               data-testid="hero-cta-group"
             >
               <a
-                href={SOCIALS.buy}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#presale"
                 data-testid="hero-buy-button"
                 className="group inline-flex items-center justify-center gap-2 h-12 px-7 rounded-full bg-[#FFD700] text-black font-bold text-sm hover:bg-[#FBE14D] transition-all shadow-[0_0_40px_-8px_rgba(255,215,0,0.7)]"
               >
-                <ShoppingBag className="w-4 h-4" />
                 Buy GOAT7
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
 
               {/* Social icons row */}
               <div className="flex items-center gap-3" data-testid="hero-socials">
                 <a
-                  href="#"
+                  href={SOCIALS.telegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Telegram"
                   data-testid="hero-social-telegram"
-                  className="w-11 h-11 inline-flex items-center justify-center rounded-full border border-white/15 text-neutral-300 hover:border-[#FFD700]/60 hover:text-[#FFD700] transition-all"
+                  className="w-11 h-11 inline-flex items-center justify-center rounded-full border border-white/15 text-neutral-300 hover:border-[#10B981]/60 hover:text-[#10B981] transition-all"
                 >
                   <Send className="w-4 h-4" />
                 </a>
                 <a
-                  href="#"
+                  href={SOCIALS.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="X (Twitter)"
                   data-testid="hero-social-x"
                   className="w-11 h-11 inline-flex items-center justify-center rounded-full border border-white/15 text-neutral-300 hover:border-[#FFD700]/60 hover:text-[#FFD700] transition-all"
@@ -125,18 +125,20 @@ export default function Hero() {
                   <XIcon className="w-3.5 h-3.5" />
                 </a>
                 <a
-                  href="#"
-                  aria-label="Discord"
-                  data-testid="hero-social-discord"
-                  className="w-11 h-11 inline-flex items-center justify-center rounded-full border border-white/15 text-neutral-300 hover:border-[#10B981]/60 hover:text-[#10B981] transition-all"
+                  href={SOCIALS.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Website"
+                  data-testid="hero-social-website"
+                  className="w-11 h-11 inline-flex items-center justify-center rounded-full border border-white/15 text-neutral-300 hover:border-white/40 hover:text-white transition-all"
                 >
-                  <DiscordIcon className="w-4 h-4" />
+                  <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
             </motion.div>
 
-            {/* CA box */}
-            <motion.div variants={fadeUp} className="mt-10" data-testid="hero-wallet-boxes">
+            {/* Contract Address */}
+            <motion.div variants={fadeUp} className="mt-10">
               <div
                 className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 sm:p-3 sm:pl-5 rounded-2xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl"
                 data-testid="contract-address-box"
@@ -146,20 +148,32 @@ export default function Hero() {
                     Contract Address (Solana)
                   </span>
                   <span
-                    className="font-mono text-base md:text-lg text-white mt-1 truncate"
+                    className="font-mono text-xs md:text-sm text-white mt-1 truncate"
                     data-testid="contract-address-value"
                   >
-                    {TOKEN.contractAddress}
+                    {TOKEN.mintAddress}
                   </span>
                 </div>
-                <button
-                  onClick={() => handleCopy(TOKEN.contractAddress, setCopiedCA)}
-                  data-testid="copy-ca-button"
-                  className="inline-flex items-center justify-center gap-2 h-10 px-4 rounded-full bg-[#FFD700] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#FBE14D] transition-all whitespace-nowrap shrink-0"
-                >
-                  {copiedCA ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                  {copiedCA ? "Copied" : "Copy"}
-                </button>
+                <div className="flex gap-2 shrink-0">
+                  <button
+                    onClick={handleCopy}
+                    data-testid="copy-ca-button"
+                    className="inline-flex items-center justify-center gap-2 h-10 px-4 rounded-full bg-[#FFD700] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#FBE14D] transition-all whitespace-nowrap"
+                  >
+                    {copiedCA ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                    {copiedCA ? "Copied" : "Copy"}
+                  </button>
+                  <a
+                    href={`https://solscan.io/token/${TOKEN.mintAddress}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="solscan-ca-button"
+                    className="inline-flex items-center justify-center gap-1.5 h-10 px-4 rounded-full bg-[#10B981] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#34D399] transition-all whitespace-nowrap"
+                  >
+                    Solscan
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
               </div>
             </motion.div>
 
@@ -168,9 +182,9 @@ export default function Hero() {
               className="mt-6 text-[11px] sm:text-xs text-neutral-500 max-w-xl leading-relaxed"
               data-testid="hero-disclaimer"
             >
-              Not affiliated with any celebrity, athlete, sports organization, or third-party brand.
-              GOAT7 is an original community meme token. Crypto is volatile — do your own research
-              (DYOR). Nothing on this site is financial advice.
+              Not affiliated with any celebrity, athlete, sports organization, or third-party
+              brand. GOAT7 is an original community meme token. Crypto is volatile — do your own
+              research (DYOR). Nothing on this site is financial advice.
             </motion.p>
           </motion.div>
 
@@ -183,11 +197,9 @@ export default function Hero() {
             data-testid="hero-mascot"
           >
             <div className="relative aspect-square w-full max-w-md md:max-w-lg mx-auto">
-              {/* Glow rings */}
               <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_rgba(255,215,0,0.35),_transparent_60%)] blur-2xl" />
               <div className="absolute inset-8 rounded-full bg-[radial-gradient(circle,_rgba(16,185,129,0.3),_transparent_70%)] blur-xl" />
 
-              {/* Hex frame */}
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
@@ -199,7 +211,6 @@ export default function Hero() {
                 className="absolute inset-8 rounded-full border border-dashed border-[#10B981]/30"
               />
 
-              {/* Mascot image — premium 3D crypto goat */}
               <div className="absolute inset-6 md:inset-10 rounded-full overflow-hidden border-2 border-[#FFD700]/40 goat-glow-gold">
                 <img
                   src="/mascot-goat.png"
@@ -210,7 +221,6 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />
               </div>
 
-              {/* Floating chips */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -226,7 +236,7 @@ export default function Hero() {
                 className="absolute bottom-4 right-0 px-3 py-2 rounded-full bg-[#0a0a0a] border border-[#10B981]/40 backdrop-blur-xl"
               >
                 <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#10B981]">
-                  ◆ LP Burned
+                  ◆ Authorities Revoked
                 </span>
               </motion.div>
               <motion.div
@@ -252,9 +262,9 @@ export default function Hero() {
         >
           {[
             { k: "Network", v: TOKEN.network },
-            { k: "Total Supply", v: TOKEN.totalSupplyShort + " GOAT7" },
+            { k: "Total Supply", v: `${TOKEN.totalSupplyShort} GOAT7` },
             { k: "Buy / Sell Tax", v: "0% / 0%" },
-            { k: "LP Status", v: "Burned" },
+            { k: "Authorities", v: "Revoked" },
           ].map((s) => (
             <div key={s.k} className="bg-[#0a0a0a] p-4 md:p-6">
               <div className="text-[10px] uppercase tracking-[0.22em] text-neutral-500 font-bold">
@@ -268,7 +278,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Marquee band */}
       <div className="mt-16 md:mt-24 border-y border-white/10 bg-[#0a0a0a] overflow-hidden">
         <div className="flex goat-marquee py-4 whitespace-nowrap">
           {Array.from({ length: 2 }).map((_, i) => (

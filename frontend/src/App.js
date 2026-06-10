@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
+import AppWalletProvider from "@/contexts/WalletProvider";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Presale from "@/components/Presale";
 import Tokenomics from "@/components/Tokenomics";
 import Roadmap from "@/components/Roadmap";
 import Security from "@/components/Security";
-import Whitepaper from "@/components/Whitepaper";
 import Community from "@/components/Community";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
@@ -16,10 +17,10 @@ function Landing() {
       <Header />
       <main>
         <Hero />
+        <Presale />
         <Tokenomics />
         <Roadmap />
         <Security />
-        <Whitepaper />
         <Community />
         <FAQ />
       </main>
@@ -31,10 +32,12 @@ function Landing() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-      </Routes>
-    </BrowserRouter>
+    <AppWalletProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+        </Routes>
+      </BrowserRouter>
+    </AppWalletProvider>
   );
 }

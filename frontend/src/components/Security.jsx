@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { ShieldCheck, Lock, Flame, FileSearch, Users, KeyRound } from "lucide-react";
+import { ShieldCheck, Lock, KeyRound, Users, Scale, Zap, Check } from "lucide-react";
 import { SECURITY_PILLARS } from "@/lib/goat-data";
 
-const ICONS = [Flame, KeyRound, Lock, ShieldCheck, FileSearch, Users];
+const ICONS = [Lock, KeyRound, ShieldCheck, Users, Scale, Zap];
 
 export default function Security() {
   return (
@@ -11,7 +11,6 @@ export default function Security() {
       data-testid="security-section"
       className="relative py-24 md:py-36 px-5 md:px-8 overflow-hidden"
     >
-      {/* Decorative shield watermark */}
       <div className="absolute inset-0 -z-10 opacity-[0.04] pointer-events-none">
         <div className="absolute right-[-10%] top-1/4 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,_#10B981,_transparent_70%)] blur-3xl" />
       </div>
@@ -29,13 +28,12 @@ export default function Security() {
               04 · Security
             </span>
             <h2 className="font-display font-black text-4xl md:text-6xl mt-3 tracking-[-0.03em] max-w-2xl">
-              Built like <span className="goat-gradient-text">a fortress.</span>
+              Verified <span className="goat-gradient-text">on-chain.</span>
             </h2>
           </div>
           <p className="text-neutral-400 max-w-md text-base md:text-lg leading-relaxed">
-            GOAT7 inherits Solana&apos;s industry-grade SPL token standard and adds
-            community-first guardrails on top. Every claim below is on-chain
-            verifiable.
+            Every guarantee below is publicly verifiable on Solana mainnet — no marketing claims,
+            only immutable on-chain state.
           </p>
         </motion.div>
 
@@ -53,22 +51,27 @@ export default function Security() {
                 className="group relative rounded-2xl border border-white/10 bg-[#0a0a0a] p-6 md:p-7 hover:-translate-y-1 hover:border-white/30 transition-all duration-300"
                 data-testid={`security-pillar-${idx}`}
               >
-                <div
-                  className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${
-                    isGold
-                      ? "bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700]"
-                      : "bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981]"
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
+                <div className="flex items-start justify-between mb-5">
+                  <div
+                    className={`w-11 h-11 rounded-xl flex items-center justify-center ${
+                      isGold
+                        ? "bg-[#FFD700]/10 border border-[#FFD700]/30 text-[#FFD700]"
+                        : "bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981]"
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div
+                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[10px] uppercase tracking-[0.18em] font-bold text-[#10B981]"
+                    data-testid={`security-status-${idx}`}
+                  >
+                    <Check className="w-3 h-3" />
+                    Confirmed
+                  </div>
                 </div>
 
-                <h3 className="font-display font-bold text-lg md:text-xl">
-                  {pillar.title}
-                </h3>
-                <p className="mt-3 text-sm text-neutral-400 leading-relaxed">
-                  {pillar.body}
-                </p>
+                <h3 className="font-display font-bold text-lg md:text-xl">{pillar.title}</h3>
+                <p className="mt-3 text-sm text-neutral-400 leading-relaxed">{pillar.body}</p>
 
                 <div
                   className={`absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500 ${
@@ -79,43 +82,6 @@ export default function Security() {
             );
           })}
         </div>
-
-        {/* Audit / explorer links band */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-10 md:mt-14 rounded-2xl border border-white/10 bg-gradient-to-r from-[#FFD700]/5 via-transparent to-[#10B981]/5 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-5"
-          data-testid="security-cta-strip"
-        >
-          <div>
-            <div className="text-[11px] uppercase tracking-[0.25em] font-bold text-[#FFD700]">
-              Audit the Project Yourself
-            </div>
-            <div className="font-display font-bold text-lg md:text-xl mt-1.5 text-white">
-              Transparency &gt; trust. Every transaction is on-chain.
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="https://solscan.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center h-10 px-4 rounded-full border border-white/15 text-white text-xs font-bold uppercase tracking-wider hover:border-[#FFD700]/60 hover:text-[#FFD700] transition-all"
-            >
-              View on Solscan
-            </a>
-            <a
-              href="https://explorer.solana.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center h-10 px-4 rounded-full border border-white/15 text-white text-xs font-bold uppercase tracking-wider hover:border-[#10B981]/60 hover:text-[#10B981] transition-all"
-            >
-              Solana Explorer
-            </a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

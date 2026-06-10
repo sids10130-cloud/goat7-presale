@@ -1,6 +1,12 @@
 import { motion } from "framer-motion";
 import { TOKENOMICS, TOKEN } from "@/lib/goat-data";
 
+const fmtTokens = (n) => {
+  if (n >= 1_000_000_000) return `${n / 1_000_000_000}B`;
+  if (n >= 1_000_000) return `${n / 1_000_000}M`;
+  return n.toLocaleString();
+};
+
 export default function Tokenomics() {
   return (
     <section
@@ -21,18 +27,17 @@ export default function Tokenomics() {
               02 · Tokenomics
             </span>
             <h2 className="font-display font-black text-4xl md:text-6xl mt-3 tracking-[-0.03em] max-w-2xl">
-              Fair Launch.<br />
-              <span className="goat-gradient-text">Locked Forever.</span>
+              Transparent.<br />
+              <span className="goat-gradient-text">On-chain forever.</span>
             </h2>
           </div>
           <p className="text-neutral-400 max-w-md text-base md:text-lg leading-relaxed">
-            A clean, transparent distribution. Liquidity is burned at launch and the
-            team allocation vests linearly over 12 months.
+            Total supply is permanently fixed at {TOKEN.totalSupplyDisplay} GOAT7. Mint, freeze
+            and update authorities are revoked — supply can never change.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-          {/* Big card - total supply (1 column on lg, full on smaller) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -41,13 +46,16 @@ export default function Tokenomics() {
             className="relative rounded-3xl border border-white/10 bg-gradient-to-br from-[#FFD700]/15 via-[#0a0a0a] to-[#10B981]/10 p-7 md:p-9 overflow-hidden group hover:border-[#FFD700]/40 transition-colors"
             data-testid="tokenomics-supply-card"
           >
-            <div className="absolute inset-0 opacity-30 pointer-events-none"
-                 style={{
-                   backgroundImage: "url('https://images.pexels.com/photos/12197169/pexels-photo-12197169.jpeg')",
-                   backgroundSize: "cover",
-                   backgroundBlendMode: "overlay",
-                   mixBlendMode: "overlay",
-                 }} />
+            <div
+              className="absolute inset-0 opacity-30 pointer-events-none"
+              style={{
+                backgroundImage:
+                  "url('https://images.pexels.com/photos/12197169/pexels-photo-12197169.jpeg')",
+                backgroundSize: "cover",
+                backgroundBlendMode: "overlay",
+                mixBlendMode: "overlay",
+              }}
+            />
             <div className="relative flex flex-col h-full justify-between min-h-[280px] gap-8">
               <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-[#FFD700]">
                 Total Supply
@@ -57,16 +65,15 @@ export default function Tokenomics() {
                   {TOKEN.totalSupplyShort}
                 </div>
                 <div className="mt-3 font-mono text-xs md:text-sm text-neutral-400 tracking-wider">
-                  {TOKEN.totalSupply} GOAT7
+                  {TOKEN.totalSupplyDisplay} GOAT7
                 </div>
                 <div className="mt-5 text-neutral-300 text-sm md:text-base max-w-xs">
-                  Fixed forever. Mint authority revoked. Contract renounced at deployment.
+                  Fixed forever. Mint, freeze and update authorities all revoked at deployment.
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Allocation cards — 2-column nested grid on lg */}
           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
             {TOKENOMICS.map((item, idx) => (
               <motion.div
@@ -87,13 +94,17 @@ export default function Tokenomics() {
                       item.color === "gold" ? "text-[#FFD700]" : "text-[#10B981]"
                     }`}
                   >
-                    {item.value}%
+                    {item.percent}%
                   </span>
+                </div>
+                <div className="mt-2 font-mono text-sm text-white">
+                  {fmtTokens(item.amount)}{" "}
+                  <span className="text-neutral-500 text-xs">GOAT7</span>
                 </div>
                 <div className="mt-4 h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
-                    whileInView={{ width: `${Math.min(item.value * 2.5, 100)}%` }}
+                    whileInView={{ width: `${item.percent * 2.5}%` }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
                     className={`h-full rounded-full ${

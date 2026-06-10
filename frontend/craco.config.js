@@ -51,6 +51,34 @@ let webpackConfig = {
         ],
       };
 
+      // Node polyfills required by @solana/web3.js & wallet adapters
+      webpackConfig.resolve = webpackConfig.resolve || {};
+      webpackConfig.resolve.fallback = {
+        ...(webpackConfig.resolve.fallback || {}),
+        buffer: require.resolve('buffer'),
+        crypto: require.resolve('crypto-browserify'),
+        stream: require.resolve('stream-browserify'),
+        process: require.resolve('process/browser.js'),
+        assert: require.resolve('assert'),
+        http: require.resolve('stream-http'),
+        https: require.resolve('https-browserify'),
+        os: require.resolve('os-browserify/browser'),
+        url: require.resolve('url'),
+        path: require.resolve('path-browserify'),
+        zlib: require.resolve('browserify-zlib'),
+        fs: false,
+        net: false,
+        tls: false,
+      };
+
+      const webpack = require('webpack');
+      webpackConfig.plugins = (webpackConfig.plugins || []).concat([
+        new webpack.ProvidePlugin({
+          Buffer: ['buffer', 'Buffer'],
+          process: 'process/browser.js',
+        }),
+      ]);
+
       // Add health check plugin to webpack if enabled
       if (config.enableHealthCheck && healthPluginInstance) {
         webpackConfig.plugins.push(healthPluginInstance);
