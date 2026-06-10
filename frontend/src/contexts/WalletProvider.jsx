@@ -5,7 +5,6 @@ import {
   PhantomWalletAdapter,
   SolflareWalletAdapter,
   TrustWalletAdapter,
-  CoinbaseWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 
 import "@solana/wallet-adapter-react-ui/styles.css";
@@ -16,15 +15,14 @@ export default function AppWalletProvider({ children }) {
   const endpoint = RPC_ENDPOINT;
 
   // Wallet Standard wallets (Phantom, Solflare, Backpack, Glow, etc.) are
-  // auto-detected by the wallet-adapter-react. We still explicitly register
-  // the most-used adapters so they show up in the modal even before the
-  // user has them installed.
+  // auto-detected by the wallet-adapter-react. We explicitly register the
+  // most-used adapters so they show up in the modal even before the user
+  // has them installed. Backpack auto-registers via wallet standard.
   const wallets = useMemo(
     () => [
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter(),
       new TrustWalletAdapter(),
-      new CoinbaseWalletAdapter(),
     ],
     []
   );

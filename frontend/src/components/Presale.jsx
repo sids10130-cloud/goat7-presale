@@ -12,7 +12,6 @@ import {
   Users,
   Flame,
   Coins,
-  ExternalLink,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -441,23 +440,6 @@ export default function Presale() {
                 You&apos;re sending SOL directly to the GOAT7 presale wallet on Solana mainnet.
                 Tokens will be airdropped after the presale concludes. Crypto is volatile — DYOR.
               </span>
-            </div>
-
-            {/* Recipient info */}
-            <div className="mt-5 pt-5 border-t border-white/10">
-              <div className="text-[10px] uppercase tracking-[0.22em] font-bold text-neutral-500 mb-2">
-                Presale wallet
-              </div>
-              <a
-                href={`https://solscan.io/account/${PRESALE.recipient}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="presale-recipient-link"
-                className="font-mono text-xs text-neutral-300 break-all hover:text-[#10B981] inline-flex items-center gap-1.5"
-              >
-                {PRESALE.recipient}
-                <ExternalLink className="w-3 h-3 shrink-0" />
-              </a>
             </div>
           </motion.div>
         </div>

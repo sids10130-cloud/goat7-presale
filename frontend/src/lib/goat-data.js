@@ -60,29 +60,29 @@ export const TOKENOMICS = [
 export const ROADMAP = [
   {
     phase: "Phase 01",
-    title: "Token Genesis",
+    title: "Presale",
     items: [
-      "Token mint deployed on Solana",
-      "Mint, freeze & update authorities revoked",
-      "Official socials launched",
-      "Community Telegram & X live",
+      "Public presale opens 12 June 2026",
+      "Hard cap 100 SOL",
+      "Multi-wallet support",
+      "Real-time on-chain tracker",
     ],
     status: "live",
   },
   {
     phase: "Phase 02",
-    title: "Presale (12 Jun — 20 Jul 2026)",
+    title: "Community Growth",
     items: [
-      "Public presale opens",
-      "Hard cap 100 SOL",
-      "Real-time on-chain tracker",
-      "Multi-wallet support",
+      "10,000+ holders milestone",
+      "Influencer partnerships",
+      "Meme contests & raids",
+      "Trending on socials",
     ],
     status: "next",
   },
   {
     phase: "Phase 03",
-    title: "DEX Launch",
+    title: "Raydium DEX Launch",
     items: [
       "Raydium liquidity seeded (30% supply)",
       "Trading goes live",
@@ -93,7 +93,7 @@ export const ROADMAP = [
   },
   {
     phase: "Phase 04",
-    title: "Growth & Ecosystem",
+    title: "Expansion",
     items: [
       "CoinGecko & CoinMarketCap listings",
       "Tier-1 CEX outreach",
