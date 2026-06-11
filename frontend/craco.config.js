@@ -69,8 +69,8 @@ let webpackConfig = {
         fs: false,
         net: false,
         tls: false,
+      vm: require.resolve('vm-browserify'),
       };
-
       const webpack = require('webpack');
       webpackConfig.plugins = (webpackConfig.plugins || []).concat([
         new webpack.ProvidePlugin({
